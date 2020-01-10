@@ -66,5 +66,3 @@ Forked from [https://github.com/Jasonbaby/stock_recommendation_spider]
 #### 需要先从git官网上下一个git
    [https://blog.csdn.net/JT_WPC/article/details/90607049]
 
-
-#I'm huang
