@@ -15,7 +15,7 @@ def read_file(file_path):
 def find_name(codes):
     with open('../Data/stocks/Acodes_names.csv',encoding='UTF-8') as f:
         while True:
-            line = f.readline()
+            line = f.readline().strip()
             sup = line.index(' ')
             if(codes == line[:sup]):
                 return line[sup+1:]
