@@ -48,7 +48,11 @@ stocks 文件用于存储A股中所有股市的信息，注意，`Astocks.csv` �
 ## `get_Acodes_name_data`
 该文件用于生成所有A股股票的代码，并生成`Acodes_names.csv`
 
-
+#Tool工具函数
+需要重复使用的工具函数放在这里
+## `read_write.py`
+### `def open_file_and_save(file_path, data):`
+用于将列表数据data（支持一维列表和二维列表）写成csv文件保存
 
 # 评论分析
 check /stock_recommendation_spider
