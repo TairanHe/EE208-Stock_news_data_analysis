@@ -9,3 +9,5 @@ Forked from [https://github.com/Jasonbaby/stock_recommendation_spider]
 
 
 # 优秀资源汇总
+## git入门安装使用指南
+   [https://blog.csdn.net/qq_41782425/article/details/85370032]
