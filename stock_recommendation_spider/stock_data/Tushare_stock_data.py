@@ -17,10 +17,12 @@ def get_data(code = '000001', min = "5min", start = '20150101', end = '20200101'
 if __name__ == "__main__":
     all_stock_list = get_all_stocks_index()
     data_save_path = "data/"
-    for stock in all_stock_list[0:5]:
+    # for stock in all_stock_list[0:5]:
+    for stock in ["600000"]:
         print('reading data from ' + stock)
         df = get_data(code = stock)
         save_path = os.path.join(data_save_path, stock + '.csv')
         df.to_csv(save_path, encoding="utf_8_sig")
+
     os._exit(0)
 
