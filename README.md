@@ -34,9 +34,12 @@ stocks 文件用于存储A股中所有股市的信息，注意，`Astocks.csv` �
 代码细节请见 `Get_stock_datas` 中的`README.md`
 
 # Tool工具函数
+## 强大的Search类
+强大的search类为你提供了封装良好的一站式搜索股票服务（现已更新至股价搜索和股票综述信息搜索）
 
-需要重复使用的工具函数放在这里
-## `read_write.py`
+##需要重复使用的工具函数放在这里 `read_write.py`
+### `def read_Astocks_data(index="code",path="../Data/stocks/Astocks.csv"):`
+用于返回你所索引的信息（A股所有股票对于该索引信息下的列表），详情请看函数内部参数说明
 ### `def open_file_and_save(file_path, data):`
 用于将列表数据data（支持一维列表和二维列表）写成csv文件保存
 
