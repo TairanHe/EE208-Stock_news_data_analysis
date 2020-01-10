@@ -2,6 +2,14 @@
 
 ## `Astocks.csv`
 股票数据的集大成者，一应俱全，但是直接读入较麻烦
+
+结果显示代表
+```
+日期 ，开盘价， 最高价， 收盘价， 最低价， 成交量， 价格变动 ，涨跌幅，5日均价，10日均价，20日均价，5日均量，10日均量，20日均量，换手率
+
+```
+
+stocks 文件用于存储A股中所有股市的信息，注意，`Astocks.csv` 文件是一切的根基，这个文件是经过了很多转换和手工清洗操作的，不要随意更改
 ### 格式
     code name industry area pe outstanding totals totalAssets liquidAssets fixedAssets reserved reservedPerShare esp bvps pb timeToMarket undp perundp rev profit gpr npr holders
     300812 N易天 专用机械 深圳 24.94 0.19 0.78 7.37 7.01 0.09 0.67 0.87 0.929 9.24 3.34 20200109 1.94 2.5 0.0 0.0 45.6 20.83 38744.0
