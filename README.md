@@ -4,19 +4,13 @@ Final homework for EE208 aiming for analyze stock datas and news.
 Let's get started!
 
 # 评论分析
-check `/stock_recommendation_spider`
-
+check /stock_recommendation_spider
 Forked from [https://github.com/Jasonbaby/stock_recommendation_spider]
-## 环境配置
-## 获取股票数据
-### Tushare
-在 
-    python 
-
 
 
 # 优秀资源汇总
 ## git入门安装使用指南
-[https://blog.csdn.net/qq_41782425/article/details/85370032]
-
-廖雪峰 [https://www.liaoxuefeng.com/wiki/896043488029600]
+   [https://blog.csdn.net/qq_41782425/article/details/85370032]
+## 可能对git的ssh配置有帮助
+#### 需要先从git官网上下一个git
+   [https://blog.csdn.net/JT_WPC/article/details/90607049]
