@@ -21,7 +21,7 @@ stocks 文件用于存储A股中所有股市的信息，注意，`Astocks.csv` �
 
 代码细节请见 `Get_stock_datas` 中的`README.md`
 
-#Tool工具函数
+# Tool工具函数
 
 需要重复使用的工具函数放在这里
 ## `read_write.py`
