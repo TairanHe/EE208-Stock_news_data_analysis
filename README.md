@@ -11,6 +11,6 @@ Forked from [https://github.com/Jasonbaby/stock_recommendation_spider]
 # 优秀资源汇总
 ## git入门安装使用指南
    [https://blog.csdn.net/qq_41782425/article/details/85370032]
-## windows需要先从git官网上下一个git
 ## 可能对git的ssh配置有帮助
+#### 需要先从git官网上下一个git
    [https://blog.csdn.net/JT_WPC/article/details/90607049]
