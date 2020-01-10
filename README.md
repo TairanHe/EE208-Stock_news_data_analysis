@@ -49,6 +49,7 @@ stocks 文件用于存储A股中所有股市的信息，注意，`Astocks.csv` �
 该文件用于生成所有A股股票的代码，并生成`Acodes_names.csv`
 
 #Tool工具函数
+
 需要重复使用的工具函数放在这里
 ## `read_write.py`
 ### `def open_file_and_save(file_path, data):`
@@ -62,6 +63,9 @@ Forked from [https://github.com/Jasonbaby/stock_recommendation_spider]
 # 优秀资源汇总
 ## git入门安装使用指南
    [https://blog.csdn.net/qq_41782425/article/details/85370032]
+## git官方指南
+   [https://help.github.com/cn/github]
 ## 可能对git的ssh配置有帮助
 #### 需要先从git官网上下一个git
    [https://blog.csdn.net/JT_WPC/article/details/90607049]
+ 
