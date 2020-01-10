@@ -5,6 +5,14 @@ Let's get started!
 # Data文件夹用于存储所有数据
 ## `Data/figures`
 ## `Data/news`
+`html`文件夹存储网页新闻：
+
+1、每个文件起始行为原网页标题。
+
+2、每支股票爬取10条最新新闻，其文件命名末尾六位数字代表其股票编号。
+
+`index.txt`文件包含了html文件夹中网页源码文件与原网址的关系：
+格式为 ‘原网址’ + ‘，’ + ‘文件名’
 ## `Data/stocks`
 结果显示代表
 ```
@@ -27,6 +35,9 @@ stocks 文件用于存储A股中所有股市的信息，注意，`Astocks.csv` �
 ## `read_write.py`
 ### `def open_file_and_save(file_path, data):`
 用于将列表数据data（支持一维列表和二维列表）写成csv文件保存
+
+# 文本聚类
+具体详见`text_clustering`文件夹
 
 # 评论分析
 check /stock_recommendation_spider
