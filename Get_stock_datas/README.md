@@ -1,8 +1,12 @@
 # 用Tushare获取股票数据
 结果显示代表
 ```
-日期 ，开盘价， 最高价， 收盘价， 最低价， 成交量， 价格变动 ，涨跌幅，5日均价，10日均价，20日均价，5日均量，10日均量，20日均量，换手率
+    code,代码  name,名称  industry,所属行业   area,地区   pe,市盈率   outstanding,流通股本(亿)   totals,总股本(亿)   totalAssets,总资产(万)   liquidAssets,流动资产
 
+    fixedAssets,固定资产   reserved,公积金   reservedPerShare,每股公积金   esp,每股收益   bvps,每股净资   pb,市净率   timeToMarket,上市日期
+
+    undp,未分利润   perundp, 每股未分配   rev,收入同比(%)   profit,利润同比(%)   gpr,毛利率(%)   npr,净利润率(%)   holders,股东人数
+    
 ```
 
 
@@ -41,3 +45,6 @@
 
 ## `get_Acodes_name_data`
 该文件用于生成所有A股股票的代码，并生成`Acodes_names.csv`
+
+## `get_history_data`
+该文件用于生成A股所有代码近一个月以来的股价信息并存入`history.csv`
