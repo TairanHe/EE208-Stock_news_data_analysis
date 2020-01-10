@@ -2,6 +2,23 @@
 import numpy as np
 import pandas as pd
 import tushare as ts
+
+# 输出一个包含文件每行内容的列表
+def read_file(file_path):
+    data_set = []
+    with open(file_path,encoding='UTF-8') as f:
+        line = f.readline()
+        data_set.append(line)
+    return data_set
+
+# 通过股票编码查找股票名称
+def find_name(codes):
+    with open('../Data/stocks/Acodes_names.csv',encoding='UTF-8') as f:
+        line = f.readline()
+        sup = line.index(' ')
+        if(codes == line[:sup]):
+            return line[sup+1:]
+
 def open_file_and_save(file_path, data):
     """
     :param file_path: type==string
