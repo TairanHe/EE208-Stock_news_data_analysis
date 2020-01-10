@@ -4,11 +4,23 @@ import pandas as pd
 import tushare as ts
 
 # 输出一个包含文件每行内容的列表
+
+
+#该文件仅用于读取Astcoks.csv
+def read_Astocks_data(index="code",path="../Data/stocks/Astocks.csv", ):
+    stocks = pd.read_csv(path, sep=' ', dtype={'code':str})
+    results = stocks[index].tolist()
+    return results
+
+
+
 def read_file(file_path):
     data_set = []
     with open(file_path,encoding='UTF-8') as f:
         line = f.readline()
-        data_set.append(line)
+        while line:
+            data_set.append(line)
+            line = f.readline()
     return data_set
 
 # 通过股票编码查找股票名称
