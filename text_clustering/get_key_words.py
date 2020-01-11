@@ -1,36 +1,28 @@
-#-*- encoding:utf-8 -*-
-# from __future__ import print_function
+import os
 
-import sys
-# try:
-#     reload(sys)
-#     sys.setdefaultencoding('utf-8')
-# except:
-#     pass
+# 将所有网页融到一个页面中来
+# 按道理说这里应该放绝对路径，不知道这样在GitHub上能不能跑
 
-import codecs
-from textrank4zh import TextRank4Keyword, TextRank4Sentence
-n = 5
-for num in range(n):
-    print("第%s组" % num)
-    text = codecs.open('%s.txt' % num, 'r', 'utf-8').read()
-    tr4w = TextRank4Keyword()
+# 更改思路：不预处理文件，直接每个爬取的文件为原文本输入（除去第一行），Kmeans输出的是堆号和每堆文件序号
+# 根据文件序号直接访问文件
+# for k,v in result.items():
+#     text = ''
+#     for num in v:
+#         f = open('../Data/news/html'+files[v],'r',encoding='utf-8')
+#         f.readline()
+#         tmp = f.readline()
+#         text += tmp
+#         f.close()
+#     # 对text进行提取关键字
 
-    tr4w.analyze(text=text, lower=True, window=2)   # py2中text必须是utf8编码的str或者unicode对象，py3中必须是utf8编码的bytes或者str对象
 
-    print( '关键词：' )
-    for item in tr4w.get_keywords(20, word_min_len=1):
-        print(item.word, item.weight)
-
-    print()
-    print( '关键短语：' )
-    for phrase in tr4w.get_keyphrases(keywords_num=20, min_occur_num= 2):
-        print(phrase)
-
-    tr4s = TextRank4Sentence()
-    tr4s.analyze(text=text, lower=True, source = 'all_filters')
-
-# print()
-# print( '摘要：' )
-# for item in tr4s.get_key_sentences(num=3):
-#     print(item.index, item.weight, item.sentence)
+path ='../Data/news/html'
+files = os.listdir(path)
+# print(files)
+with open('total.txt','w',encoding='utf-8') as f:
+    for file in files:
+        print(1)
+        f1 = open(path+'/'+file,'r',encoding='utf-8')
+        f1.readline()
+        f.write(f1.read()+'\n')
+        f1.close()
