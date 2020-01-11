@@ -1,6 +1,6 @@
 
 import numpy as np
-
+import os
 
 import pandas as pd
 import tushare as ts
@@ -19,7 +19,6 @@ def read_Astocks_data(index="code",path="../Data/stocks/Astocks.csv"):
 
     undp,未分利润   perundp, 每股未分配   rev,收入同比(%)   profit,利润同比(%)   gpr,毛利率(%)   npr,净利润率(%)   holders,股东人数
 
-
     :param path: 读取Astcoks.csv对应的相对位置
     :return: 对应index的列表 [, , , , , ,  .....  , , , , , ]
     '''
@@ -27,11 +26,25 @@ def read_Astocks_data(index="code",path="../Data/stocks/Astocks.csv"):
     results = stocks[index].tolist()
     return results
 
+def find_news_website(file_name):
+    with open('../Data/news/index.txt') as f:
+        line = f.readline()
+        while line:
+            sup = line.index(',')
+            if(file_name == line[sup+1:-1]):
+                return line[:sup-6]
+            line = f.readline()
+    return -1
 
-
-
-
-
+def find_news_file(website):
+    with open('../Data/news/index.txt') as f:
+        line = f.readline()
+        while line:
+            sup = line.index(',')
+            if(website == line[:sup-6]):
+                return line[sup+1:]
+            line = f.readline()
+    return -1
 
 def read_file(file_path):
     data_set = []
