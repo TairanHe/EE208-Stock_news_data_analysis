@@ -49,15 +49,19 @@ turnover:换手率[注：指数无此项]
 
 history = list()
 codes = read_Astocks_data("code")
-dates = ['2020-01-10', '2020-01-09','2020-01-08', '2020-01-07','2020-01-06', '2020-01-03','2020-01-02', '2019-12-31', '2019-12-30', '2019-12-27','2019-12-26','2019-12-25','2019-12-24','2019-12-23','2019-12-20','2019-12-19','2019-12-18','2019-12-17','2019-12-16','2019-12-13','2019-12-12','2019-12-11','2019-12-10']
-# i=0
+dates = read_Astocks_data("date", path="../Data/stocks/dates.csv")
+print(dates)
+# exit(0)
+
+
+#dates = ['2020-01-10', '2020-01-09','2020-01-08', '2020-01-07','2020-01-06', '2020-01-03','2020-01-02', '2019-12-31', '2019-12-30', '2019-12-27','2019-12-26','2019-12-25','2019-12-24','2019-12-23','2019-12-20','2019-12-19','2019-12-18','2019-12-17','2019-12-16','2019-12-13','2019-12-12','2019-12-11','2019-12-10']
+
 for code in tqdm(codes):
-    # i=i+1
-    # if i>5: break
+
     try:
         line = [code]
         history.append(line)
-        hist_data = ts.get_hist_data(code,ktype="D",start="2019-12-10",end="2020-1-10",retry_count=10)
+        hist_data = ts.get_hist_data(code,retry_count=10)
         open = hist_data['open'].tolist()
         low = hist_data['low'].tolist()
         high = hist_data['high'].tolist()
@@ -73,6 +77,7 @@ for code in tqdm(codes):
             line.append(low[i])
             line.append(high[i])
             line.append(close[i])
+
             history.append(line)
 
         history.append([" "])
