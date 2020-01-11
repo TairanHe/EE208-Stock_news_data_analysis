@@ -24,6 +24,7 @@ class KmeansClustering():
         else:
             return []
 
+    # 当然这里也可以直接改成每个文件一个文本
     def preprocess_data(self, corpus_path):
         """
         文本预处理，每行一个文本
@@ -96,3 +97,4 @@ if __name__ == '__main__':
             # print(news_data[num])
             # print(type(news_data[num]))
             f.write(news_data[num])
+        f.close()
