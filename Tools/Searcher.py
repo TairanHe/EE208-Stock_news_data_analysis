@@ -7,9 +7,12 @@ from Tools.read_write import *
 
 
 class Searcher:
-    def __init__(self, path='../Data/stocks/Astocks.csv'):
-        self.stocks = into_list(path=path)
-        self.histories = into_list(path="../Data/stocks/history.csv")
+    def __init__(self, path='../Data/stocks/'):
+        '''
+        :param path: 这里请填写到stocks的相对路径，默认返回一级后到Data
+        '''
+        self.stocks = into_list(path=path+'Astocks.csv')
+        self.histories = into_list(path=path+"/history.csv")
 
 # Searcher 为你提供了两种功能，前五个函数用于搜索股价，从第六个开始，函数用于搜索股票的综合信息
 #接下来的5个函数用于搜索股票近一个月以来的股价信息
