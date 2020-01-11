@@ -6,7 +6,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.cluster import KMeans
 
-import codecs
 from textrank4zh import TextRank4Keyword, TextRank4Sentence
 
 class KmeansClustering():
@@ -28,6 +27,7 @@ class KmeansClustering():
             return []
 
     # 当然这里也可以直接改成每个文件一个文本
+    # 文本太多，速度奇慢
     def preprocess_data(self, files):
         """
         文本预处理，每行一个文本
@@ -35,10 +35,15 @@ class KmeansClustering():
         :return:
         """
         corpus = []
-        for file in files:
-            with open(path+'/'+file, 'r', encoding='utf-8') as f:
+        # 再更改：只取300条新闻聚类
+        for num in range(300):
+            with open(path+'/'+files[num], 'r', encoding='utf-8') as f:
                 line = f.read()
                 corpus.append(' '.join([word for word in jieba.lcut(line.strip()) if word not in self.stopwords]))
+        # for file in files:
+        #     with open(path+'/'+file, 'r', encoding='utf-8') as f:
+        #         line = f.read()
+        #         corpus.append(' '.join([word for word in jieba.lcut(line.strip()) if word not in self.stopwords]))
         return corpus
 
     def get_text_tfidf_matrix(self, corpus):
@@ -120,8 +125,8 @@ if __name__ == '__main__':
         for phrase in tr4w.get_keyphrases(keywords_num=20, min_occur_num=2):
             print(phrase)
 
-        tr4s = TextRank4Sentence()
-        tr4s.analyze(text=text, lower=True, source='all_filters')
+        # tr4s = TextRank4Sentence()
+        # tr4s.analyze(text=text, lower=True, source='all_filters')
 
     # news_data = []
     # with open('total.txt','r',encoding='utf-8') as f:

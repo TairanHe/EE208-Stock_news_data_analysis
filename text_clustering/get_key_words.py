@@ -27,8 +27,8 @@ for num in range(n):
     for phrase in tr4w.get_keyphrases(keywords_num=20, min_occur_num= 2):
         print(phrase)
 
-    tr4s = TextRank4Sentence()
-    tr4s.analyze(text=text, lower=True, source = 'all_filters')
+    # tr4s = TextRank4Sentence()
+    # tr4s.analyze(text=text, lower=True, source = 'all_filters')
 
 # print()
 # print( '摘要：' )
