@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import os
 import jieba
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.cluster import KMeans
+
+import codecs
+from textrank4zh import TextRank4Keyword, TextRank4Sentence
 
 class KmeansClustering():
     def __init__(self, stopwords_path=None):
@@ -24,16 +28,16 @@ class KmeansClustering():
             return []
 
     # 当然这里也可以直接改成每个文件一个文本
-    def preprocess_data(self, corpus_path):
+    def preprocess_data(self, files):
         """
         文本预处理，每行一个文本
         :param corpus_path:
         :return:
         """
         corpus = []
-        with open(corpus_path, 'r', encoding='utf-8') as f:
-            # 加每一行文字
-            for line in f:
+        for file in files:
+            with open(path+'/'+file, 'r', encoding='utf-8') as f:
+                line = f.read()
                 corpus.append(' '.join([word for word in jieba.lcut(line.strip()) if word not in self.stopwords]))
         return corpus
 
@@ -78,23 +82,59 @@ class KmeansClustering():
         return result
 
 # 关于原数据的说明——这玩意每一行就是一条新闻
+path = '../Data/news/html'
+n = 7
 if __name__ == '__main__':
+    files = os.listdir(path)
     Kmeans = KmeansClustering(stopwords_path='stop_words.txt')
-    result = Kmeans.kmeans('total.txt', n_clusters=5)
+    result = Kmeans.kmeans(files, n_clusters=n)
     print(result)
     # print(type(result))
-    news_data = []
-    with open('total.txt','r',encoding='utf-8') as f:
-        line = f.readline()
-        while line:
-            # print(line.decode())
-            news_data.append(line)
-            line = f.readline()
 
-    for k,v in result.items():
-        f = open('%s.txt' % k,'w',encoding='utf-8')
+    texts = {}
+    for k, v in result.items():
+        text = ''
         for num in v:
-            # print(news_data[num])
-            # print(type(news_data[num]))
-            f.write(news_data[num])
-        f.close()
+            f = open('../Data/news/html/' + files[num], 'r', encoding='utf-8')
+            tmp = f.read()
+            tmp = tmp.strip()
+            text += tmp
+            f.close()
+        texts[k] = text
+
+    # 对text进行提取关键字
+    for num in range(n):
+        print("第%s组" % num)
+        text = texts[num]
+        # text = codecs.open('%s.txt' % num, 'r', 'utf-8').read()
+        tr4w = TextRank4Keyword()
+
+        tr4w.analyze(text=text, lower=True, window=2)  # py2中text必须是utf8编码的str或者unicode对象，py3中必须是utf8编码的bytes或者str对象
+
+        print('关键词：')
+        for item in tr4w.get_keywords(20, word_min_len=1):
+            print(item.word, item.weight)
+
+        print()
+        print('关键短语：')
+        for phrase in tr4w.get_keyphrases(keywords_num=20, min_occur_num=2):
+            print(phrase)
+
+        tr4s = TextRank4Sentence()
+        tr4s.analyze(text=text, lower=True, source='all_filters')
+
+    # news_data = []
+    # with open('total.txt','r',encoding='utf-8') as f:
+    #     line = f.readline()
+    #     while line:
+    #         # print(line.decode())
+    #         news_data.append(line)
+    #         line = f.readline()
+    #
+    # for k,v in result.items():
+    #     f = open('%s.txt' % k,'w',encoding='utf-8')
+    #     for num in v:
+    #         # print(news_data[num])
+    #         # print(type(news_data[num]))
+    #         f.write(news_data[num])
+    #     f.close()
