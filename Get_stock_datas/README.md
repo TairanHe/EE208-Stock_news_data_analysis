@@ -9,11 +9,6 @@
     
 ```
 
-
-
-
-
-
 # Get_stock_datas 获得股票信息
 ## `get_Astocks_data.py`
 不要运行，该文件导出的`Astocks.csv`不可直接使用，运行此文件可能导致数据损坏
@@ -21,6 +16,24 @@
 该文件导出的`Astocks.csv`中有很多名字为三个字的股票如`五粮液`实际数据形式为`五 粮 液`,需要进行修改
 
 我还将导出的csv文件的逗号`,`改成了空格` `分割，这一步有些多余，导致我们后来在用pandas读取`Astocks.csv`时需要`sep=' '`作为分割参数进行读取。
+
+
+
+## `get_star_data.py`
+该文件用于生成`Data/stocks/stars.csv`，使用了`analyzer`中的函数
+
+## `get_dirty_date.py` and `get_clean_date.py`
+这两个文件用于解决Tushare库中dates不是索引所引发的无日期问题
+
+用于 `get_history_data` 做进一步数据清理操作
+
+
+## `get_history_data`
+该文件用于生成A股所有代码近一年以来的股价信息并存入`history.csv`
+
+
+## `get_Acodes_name_data`
+该文件用于生成所有A股股票的代码，并生成`Acodes_names.csv`
 
 ## `get_Acodes_data.py`
 该文件用于生成所有A股股票的代码，并生成`Acodes.csv`
@@ -43,8 +56,6 @@
 `open_file_and_save(file_path, data):`
 用于将列表写成csv文件存储
 
-## `get_Acodes_name_data`
-该文件用于生成所有A股股票的代码，并生成`Acodes_names.csv`
 
-## `get_history_data`
-该文件用于生成A股所有代码近一个月以来的股价信息并存入`history.csv`
+
+
