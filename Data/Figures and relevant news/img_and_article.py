@@ -20,12 +20,15 @@ def clean_codes(soup):
 
 with open('Acodes_names.csv', encoding='UTF-8') as f:
     lines = f.readlines()
-    i=1000;
-    while i<2000:
+    i=2000;
+    while i<3000:
         try:
+            limit = 0
             with open("initurl/"+lines[i][0:6]+'.txt') as g:
                 j=0
                 while True:
+                    if limit>=5:
+                        break
                     url = g.readline()
                     if url == '':
                         break
@@ -40,6 +43,7 @@ with open('Acodes_names.csv', encoding='UTF-8') as f:
 
                     img_container = soup.find_all("div", {"class": "img-container"})
                     if img_container:
+                        limit += 1
                         os.makedirs("img_article/" + lines[i][0:6] + "/" + str(j))
                         v = 0
                         for r in img_container:
