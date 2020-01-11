@@ -30,20 +30,26 @@ def find_news_website(file_name):
     with open('../Data/news/index.txt') as f:
         line = f.readline()
         while line:
-            sup = line.index(',')
-            if(file_name == line[sup+1:-1]):
-                return line[:sup-6]
-            line = f.readline()
+            try:
+                sup = line.index(',')
+                if(file_name == line[sup+1:-1]):
+                    return line[:sup-6]
+                line = f.readline()
+            except ValueError:
+                line = f.readline()
     return -1
 
 def find_news_file(website):
     with open('../Data/news/index.txt') as f:
         line = f.readline()
         while line:
-            sup = line.index(',')
-            if(website == line[:sup-6]):
-                return line[sup+1:]
-            line = f.readline()
+            try:
+                sup = line.index(',')
+                if(website == line[:sup-6]):
+                    return line[sup+1:]
+                line = f.readline()
+            except ValueError:
+                line = f.readline()
     return -1
 
 def read_file(file_path):
