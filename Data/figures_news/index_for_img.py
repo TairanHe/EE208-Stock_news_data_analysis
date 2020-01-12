@@ -85,7 +85,7 @@ class IndexFiles(object):
                 number = lines[i][0:6]
             #for root, dirnames, filenames in os.walk(root):
                 root = root + number + "/"
-                i+=1;
+                i+=1
                 files = os.listdir(root)
                 for file in files:
                     #if not file.endswith('.txt'):
