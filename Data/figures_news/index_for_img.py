@@ -81,46 +81,47 @@ class IndexFiles(object):
         with open('Acodes_names.csv', encoding='UTF-8') as f:
             lines = f.readlines()
             i = 0
-            while i < 3777:
+            while i < 100:
                 number = lines[i][0:6]
             #for root, dirnames, filenames in os.walk(root):
-            root = root + number + "/"
-            files = os.listdir(root)
-            for file in files:
-                #if not file.endswith('.txt'):
-                    #continue
-                print("adding", file)
-                try:
-                    # path = os.path.join(root, file)
-                    # file = open(path)
-                    # contents = unicode(file.read(), 'gbk')
-                    # file.close()
-                    #fileMain = open(path, "r", encoding="utf-8")
-                    contents = get_imgnews_url(number,file)
-                    title = get_title(number,file)
-                    url = get_imgnews_url(number,file)
-                    path = get_img_path(number,file)
-                    #fileMain.close()
+                root = root + number + "/"
+                i+=1;
+                files = os.listdir(root)
+                for file in files:
+                    #if not file.endswith('.txt'):
+                        #continue
+                    print("adding", file)
+                    try:
+                        # path = os.path.join(root, file)
+                        # file = open(path)
+                        # contents = unicode(file.read(), 'gbk')
+                        # file.close()
+                        #fileMain = open(path, "r", encoding="utf-8")
+                        contents = get_imgnews_url(root,file)
+                        title = get_title(root,file)
+                        url = get_imgnews_url(root,file)
+                        path = get_img_path(root,file)
+                        #fileMain.close()
 
-                    print("url is",url)
-                    print("title:",title)
-                    print("contents:",contents)
-                    #print("Stockname:",Stockname)
-                    doc = Document()
-                    #doc.add(Field("filename", filename, t1))
-                    for i in path:
-                        doc.add(Field("path", i, t1))
-                    doc.add(Field("title", title, t1))
-                    doc.add(Field("url", url, t1))
-                    # ?
-                    # doc.add(Field("site", url, t2))
-                    if len(contents) > 0:
-                        doc.add(Field("contents", contents, t2))
-                    else:
-                        print("warning: no content in %s" % file)
-                    writer.addDocument(doc)
-                except Exception as e:
-                    print("Failed in indexDocs:", e)
+                        print("url is",url)
+                        print("title:",title)
+                        print("contents:",contents)
+                        #print("Stockname:",Stockname)
+                        doc = Document()
+                        #doc.add(Field("filename", filename, t1))
+                        for i in path:
+                            doc.add(Field("path", i, t1))
+                        doc.add(Field("title", title, t1))
+                        doc.add(Field("url", url, t1))
+                        # ?
+                        # doc.add(Field("site", url, t2))
+                        if len(contents) > 0:
+                            doc.add(Field("contents", contents, t2))
+                        else:
+                            print("warning: no content in %s" % file)
+                        writer.addDocument(doc)
+                    except Exception as e:
+                        print("Failed in indexDocs:", e)
 
 # def gettitle(content):
 #     if content:
@@ -128,26 +129,26 @@ class IndexFiles(object):
 #         return soup.title.string
 #     return 'empty'
 
-def get_imgnews_url(number,j):
-    with open("img_article/" + number + "/" + str(j) + "/" + str(j) + "_content.txt") as f:
+def get_imgnews_url(root,j):
+    with open(root + str(j) + "/" + str(j) + "_content.txt") as f:
         return  f.readline().strip()
     
-def get_title(number,j):
-    with open("img_article/" + number + "/" + str(j) + "/" + str(j) + "_content.txt") as f:
+def get_title(root,j):
+    with open(root + str(j) + "/" + str(j) + "_content.txt") as f:
         tmp = f.readlines()
         return tmp[2].strip()
     
-def get_content(number,j):
-    with open("img_article/" + number + "/" + str(j) + "/" + str(j) + "_content.txt") as f:
+def get_content(root,j):
+    with open(root + str(j) + "/" + str(j) + "_content.txt") as f:
         tmp = f.readlines()
         return tmp[4].strip()
     
-def get_img_path(number,j):
-    files = os.listdir("img_article/" + number + "/" + j)
+def get_img_path(root,j):
+    files = os.listdir(root + str(j))
     tmp=[]
     for file in files:
         if file[-3:] == "jpg":
-            tmp.append("img_article/" + number + "/" + str(j) + "/" + file)
+            tmp.append(root + str(j) + "/" + file)
     return tmp
 
 if __name__ == '__main__':
