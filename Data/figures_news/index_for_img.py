@@ -83,6 +83,11 @@ class IndexFiles(object):
             i = 0
             while i < 100:
                 number = lines[i][0:6]
+                name = lines[i][7:]
+                name = name.strip()
+                doc.add(Field("Acodes", number, t1))
+                doc.add(Field("stocksname", name, t1))
+                tmp = root
             #for root, dirnames, filenames in os.walk(root):
                 root = root + number + "/"
                 i+=1
@@ -109,8 +114,8 @@ class IndexFiles(object):
                         #print("Stockname:",Stockname)
                         doc = Document()
                         #doc.add(Field("filename", filename, t1))
-                        for i in path:
-                            doc.add(Field("path", i, t1))
+                        for j in path:
+                            doc.add(Field("path", j, t1))
                         doc.add(Field("title", title, t1))
                         doc.add(Field("url", url, t1))
                         # ?
@@ -122,6 +127,7 @@ class IndexFiles(object):
                         writer.addDocument(doc)
                     except Exception as e:
                         print("Failed in indexDocs:", e)
+                root = tmp
 
 # def gettitle(content):
 #     if content:
@@ -130,16 +136,16 @@ class IndexFiles(object):
 #     return 'empty'
 
 def get_imgnews_url(root,j):
-    with open(root + str(j) + "/" + str(j) + "_content.txt") as f:
+    with open(root + str(j) + "/" + str(j) + "_content.txt",encoding='gbk') as f:
         return  f.readline().strip()
     
 def get_title(root,j):
-    with open(root + str(j) + "/" + str(j) + "_content.txt") as f:
+    with open(root + str(j) + "/" + str(j) + "_content.txt",encoding='gbk') as f:
         tmp = f.readlines()
         return tmp[2].strip()
     
 def get_content(root,j):
-    with open(root + str(j) + "/" + str(j) + "_content.txt") as f:
+    with open(root + str(j) + "/" + str(j) + "_content.txt",encoding='gbk') as f:
         tmp = f.readlines()
         return tmp[4].strip()
     
