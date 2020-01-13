@@ -1,0 +1,565 @@
+$def with(index, user, star_num)
+<!DOCTYPE html>
+<html lang="en">
+
+$code:
+    a = into_list()
+    b = into_list_2()
+    aim = []
+    name = a[index][1]
+    code = a[index][0]
+    area = a[index][2]
+    location = a[index][3]
+    date = str(a[index][15])[:-2]
+    date = date[:4] + '/' + date[4:6] + '/' + date[6:]
+    outstandings = log(float(a[index][5])+1)
+    totalAssets = log(float(a[index][7])+1)
+    gpr = log(float(a[index][-3])+1)
+    pb = log(float(a[index][14])+1)
+    holders = log(float(a[index][-1])+1)
+
+    for i in range(len(a)):
+        if (a[i][2] == a[index][2]):
+            aim += [[a[i][0], a[i][1], a[i][2], a[i][3], a[i][4], a[i][7], a[i][-1]]]
+
+    for i in range(0, len(b)):
+        if b[i][0] == str(code):
+            ptr = i
+            break
+    K = []
+    ptr += 1
+    while(len(b[ptr][0])==10):
+        K.append(b[ptr])
+        ptr += 1
+    end = "?index={}".format(str(index))
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>股票信息</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="../static/gegu/css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="../static/gegu/css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="../static/gegu/css/templatemo-style.css">
+    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+</head>
+
+<body id="reportsPage">
+    <div class="" id="home">
+        <nav class="navbar navbar-expand-xl">
+            <div class="container h-100">
+                <a class="navbar-brand" href="text">
+                    <h1 class="tm-site-title mb-0">$name</h1>
+                </a>
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars tm-nav-icon"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto h-100">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-tachometer-alt"></i>
+									基本数据版
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="text_common$end">
+                                <i class="far fa-file-alt"></i>
+									咨询栏
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="recommand$end">
+                                <i class="fas fa-shopping-cart"></i>
+									每日推荐
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="account$end ">
+                                <i class="far fa-user"></i>
+									账户
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            $if user == None:
+                                <a class="nav-link d-block" href="account?index=$index ">
+                                    <p>请先注册账号</p>
+                                </a>
+                            $else:
+                                <a class="nav-link d-block" href="#">
+                                    $user <b>欢迎</b>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+        <div class="container">
+            <div style="height:60px;"></div>
+            <div class="row tm-content-row">
+                <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 tm-block-col" >
+                    <div class="tm-bg-primary-dark tm-block "  >
+                        <h2 class="tm-block-title">股份代码: $code </h2>
+                        <h2 class="tm-block-title">股份名称: $name </h2>
+                        <h2 class="tm-block-title">上市日期: $date </h2>
+                        <h2 class="tm-block-title">所属领域: $area </h2>
+                        <h2 class="tm-block-title">所在地区: $location</h2>
+
+                    </div>
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 tm-block-col" >
+                    <div id = "radar" class="tm-bg-primary-dark tm-block ">
+                    </div>
+                    <script>
+                        var myChart = echarts.init(document.getElementById('radar'));
+                        var option = {
+
+                            title: {
+                                text: '公司基本信息',
+                                left: 20,
+                                textStyle:{color:'#FFF'}
+                            },
+
+                            radar: {
+                                name: {
+                                    textStyle: {
+                                        color: '#fff',
+                                        backgroundColor: '#999',
+                                        borderRadius: 3,
+                                        padding: [3, 5]
+                                    }
+                                },
+                                indicator: [
+                                    { name: '流通股本（Outstanding）', max: 7},
+                                    { name: '总资本（TotalAssets）', max: 12},
+                                    { name: '毛利率（gpr）', max: 5},
+                                    { name: '市净率（pb）', max: 4},
+                                    { name: '股东人数（holder）', max: 14.2},
+
+                                ]
+                            },
+                            series: [{
+                                type: 'radar',
+                                data: [
+                                    {
+                                        value: [$outstandings ,$totalAssets , $gpr ,$pb ,$holders ],
+                                        name: '基本信息'
+                                    },
+                                ],
+                                areaStyle:{
+                                    normal:{
+                                        opacity: 0.5
+                                    }
+                                }
+                            }]
+                        };
+                        myChart.setOption(option);
+                    </script>
+                </div>
+            </div>
+            <div style="height:60px;"></div>
+            <!-- row -->
+            <div class="row tm-content-row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col" style="height:500px;">
+                    <div id = "K-line" class="tm-bg-primary-dark tm-block tm-block-taller" >
+                    </div>
+                    <script>
+                        var upColor = '#ec0000';
+                        var upBorderColor = '#8A0000';
+                        var downColor = '#00da3c';
+                        var downBorderColor = '#008F28';
+                        var myChart = echarts.init(document.getElementById('K-line'));
+                        var data0 = splitData([
+                            $for i in range(len(K)-1,-1,-1):
+                                [' $K[i][0] ', $K[i][1] , $K[i][4], $K[i][2] , $K[i][3] ],
+                        ]);
+                        function splitData(rawData) {
+                            var categoryData = [];
+                            var values = []
+                            for (var i = 0; i < rawData.length; i++) {
+                                categoryData.push(rawData[i].splice(0, 1)[0]);
+                                values.push(rawData[i])
+                            }
+                            return {
+                                categoryData: categoryData,
+                                values: values
+                            };
+                        }
+
+                        function calculateMA(dayCount) {
+                            var result = [];
+                            for (var i = 0, len = data0.values.length; i < len; i++) {
+                                if (i < dayCount) {
+                                    result.push('-');
+                                    continue;
+                                }
+                                var sum = 0;
+                                for (var j = 0; j < dayCount; j++) {
+                                    sum += data0.values[i - j][1];
+                                }
+                                result.push(sum / dayCount);
+                            }
+                            return result;
+                        }
+
+
+
+                        var option = {
+                            title: {
+                                text: 'K线走势',
+                                left: 0,
+                                textStyle:{color:'#FFF'}
+                            },
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'cross'
+                                }
+                            },
+                            legend: {
+                                data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
+                            },
+                            grid: {
+                                left: '10%',
+                                right: '10%',
+                                bottom: '15%'
+                            },
+                            xAxis: {
+                                type: 'category',
+                                data: data0.categoryData,
+                                scale: true,
+                                boundaryGap: false,
+                                axisLine: {onZero: false},
+                                splitLine: {show: false},
+                                splitNumber: 20,
+                                min: 'dataMin',
+                                max: 'dataMax'
+                            },
+                            yAxis: {
+                                scale: true,
+                                splitArea: {
+                                    show: true
+                                }
+                            },
+                            dataZoom: [
+                                {
+                                    type: 'inside',
+                                    start: 50,
+                                    end: 100
+                                },
+                                {
+                                    show: true,
+                                    type: 'slider',
+                                    top: '90%',
+                                    start: 50,
+                                    end: 100
+                                }
+                            ],
+                            series: [
+                                {
+                                    name: '日K',
+                                    type: 'candlestick',
+                                    data: data0.values,
+                                    itemStyle: {
+                                        color: upColor,
+                                        color0: downColor,
+                                        borderColor: upBorderColor,
+                                        borderColor0: downBorderColor
+                                    },
+                                    markPoint: {
+                                        label: {
+                                            normal: {
+                                                formatter: function (param) {
+                                                    return param != null ? Math.round(param.value) : '';
+                                                }
+                                            }
+                                        },
+                                        data: [
+                                            {
+                                                name: 'XX标点',
+                                                coord: ['2013/5/31', 2300],
+                                                value: 2300,
+                                                itemStyle: {
+                                                    color: 'rgb(41,60,85)'
+                                                }
+                                            },
+                                            {
+                                                name: 'highest value',
+                                                type: 'max',
+                                                valueDim: 'highest'
+                                            },
+                                            {
+                                                name: 'lowest value',
+                                                type: 'min',
+                                                valueDim: 'lowest'
+                                            },
+                                            {
+                                                name: 'average value on close',
+                                                type: 'average',
+                                                valueDim: 'close'
+                                            }
+                                        ],
+                                        tooltip: {
+                                            formatter: function (param) {
+                                                return param.name + '<br>' + (param.data.coord || '');
+                                            }
+                                        }
+                                    },
+                                    markLine: {
+                                        symbol: ['none', 'none'],
+                                        data: [
+                                            [
+                                                {
+                                                    name: 'from lowest to highest',
+                                                    type: 'min',
+                                                    valueDim: 'lowest',
+                                                    symbol: 'circle',
+                                                    symbolSize: 10,
+                                                    label: {
+                                                        show: false
+                                                    },
+                                                    emphasis: {
+                                                        label: {
+                                                            show: false
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    type: 'max',
+                                                    valueDim: 'highest',
+                                                    symbol: 'circle',
+                                                    symbolSize: 10,
+                                                    label: {
+                                                        show: false
+                                                    },
+                                                    emphasis: {
+                                                        label: {
+                                                            show: false
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            {
+                                                name: 'min line on close',
+                                                type: 'min',
+                                                valueDim: 'close'
+                                            },
+                                            {
+                                                name: 'max line on close',
+                                                type: 'max',
+                                                valueDim: 'close'
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    name: 'MA5',
+                                    type: 'line',
+                                    data: calculateMA(5),
+                                    smooth: true,
+                                    lineStyle: {
+                                        opacity: 0.5
+                                    }
+                                },
+                                {
+                                    name: 'MA10',
+                                    type: 'line',
+                                    data: calculateMA(10),
+                                    smooth: true,
+                                    lineStyle: {
+                                        opacity: 0.5
+                                    }
+                                },
+                                {
+                                    name: 'MA20',
+                                    type: 'line',
+                                    data: calculateMA(20),
+                                    smooth: true,
+                                    lineStyle: {
+                                        opacity: 0.5
+                                    }
+                                },
+                                {
+                                    name: 'MA30',
+                                    type: 'line',
+                                    data: calculateMA(30),
+                                    smooth: true,
+                                    lineStyle: {
+                                        opacity: 0.5
+                                    }
+                                },
+
+                            ]
+                        };
+                        myChart.setOption(option);
+                    </script>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col" style="height:500px;">
+                    <div id = "main" class="tm-bg-primary-dark tm-block">
+
+                    </div>
+                    <script>
+                        var myChart = echarts.init(document.getElementById('main'));
+
+                        var option = {
+                            title: {
+                                text: '同类型股中股民人数占比',
+                                textStyle:{color:'#FFF'}
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: '{a} <br/>{b} : {c} ({d}%)'
+                            },
+                            series: [
+                                {
+                                    name: '公司名(人数)',
+                                    type: 'pie',
+                                    radius: ['50%', '70%'],
+                                    avoidLabelOverlap: false,
+                                    label: {
+                                        normal: {
+                                            show: false,
+                                            position: 'center'
+                                        },
+                                        emphasis: {
+                                            show: true,
+                                            textStyle: {
+                                                fontSize: '30',
+                                                fontWeight: 'bold'
+                                            }
+                                        }
+                                    },
+                                    labelLine: {
+                                        normal: {
+                                            show: false
+                                        }
+                                    },
+                                    data: [
+                                        $for i in range(len(aim)):
+                                            {value: $aim[i][-1] , name: '$aim[i][1] '},
+                                    ]
+                                }
+                            ]
+                        };
+                        myChart.setOption(option);
+                    </script>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div id = "main2"class="tm-bg-primary-dark tm-block">
+                    </div>
+                    <script>
+                        var myChart = echarts.init(document.getElementById('main2'));
+                        var option2 =  {
+                            title: {
+                                text: '同类型股中总资产对比',
+                                textStyle:{color:'#FFF'}
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: '{a} <br/>{b}: {c} ({d}%)'
+                            },
+                            series: [
+                                {
+                                    name: '公司名(资产/亿)',
+                                    type: 'pie',
+                                    radius: ['50%', '70%'],
+                                    avoidLabelOverlap: false,
+                                    label: {
+                                        normal: {
+                                            show: false,
+                                            position: 'center'
+                                        },
+                                        emphasis: {
+                                            show: true,
+                                            textStyle: {
+                                                fontSize: '30',
+                                                fontWeight: 'bold'
+                                            }
+                                        }
+                                    },
+                                    labelLine: {
+                                        normal: {
+                                            show: false
+                                        }
+                                    },
+                                    data: [
+                                        $for i in range(len(aim)):
+                                            {value: $aim[i][5] , name: '$aim[i][1] '},
+                                    ]
+                                }
+                            ]
+                        };
+
+                        myChart.setOption(option2);
+                    </script>
+                </div>
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h2 class="tm-block-title">同类个股</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">编号</th>
+                                    <th scope="col">名称</th>
+                                    <th scope="col">类别</th>
+                                    <th scope="col">所在地</th>
+                                    <th scope="col">总资产（亿）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                $for i in range(len(aim)):
+                                    $code:
+                                        if aim[i][4] == 0.0:
+                                            aim[i][4] = '--------'
+                                    <tr>
+                                        <th scope="row"><b>$aim[i][0]</b></th>
+                                        <td><b>$aim[i][1]</b></td>
+                                        <td><b>$aim[i][2]</b></td>
+                                        <td><b>$aim[i][3]</b></td>
+                                        <td><b>$aim[i][4]</b></td>
+                                    </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="tm-footer row tm-mt-small">
+            <div class="col-12 font-weight-light">
+                <p class="text-center text-white mb-0 px-4 small">
+                    Copyright &copy; <b>股神之路 2020</b> All rights reserved.
+
+
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../static/gegu/js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="../static/gegu/js/moment.min.js"></script>
+    <!-- https://momentjs.com/ -->
+
+    <!-- http://www.chartjs.org/docs/latest/ -->
+    <script src="../static/gegu/js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script src="../static/gegu/js/tooplate-scripts.js"></script>
+</body>
+</html>

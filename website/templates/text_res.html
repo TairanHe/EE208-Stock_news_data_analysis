@@ -1,0 +1,269 @@
+$def with(text,user,index,k,num)
+$code:
+    if k > 0:
+        total = "gegu_common?index={}".format(index)
+        end = "?index={}".format(index)
+        star = '⭐'*int(num)
+    else:
+        end = "?index=-1"
+        star = ''
+    ans1 = search_1(text)
+    ans2 = search_2(text)
+    add_recom('',user)
+    if index<0:
+        a = []
+        for x in ans1[:3]:
+            a.append(x['name'])
+        for x in ans2[:3]:
+            a.append(x['Stockname'])
+        add_recom(a,user)
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>搜索结果</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+    />
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="../static/gegu/css/fontawesome.min.css" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="../static/gegu/css/bootstrap.min.css" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="../static/gegu/css/templatemo-style.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+  </head>
+
+  <body id="reportsPage">
+    <div class="" id="home">
+      <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+          <a class="navbar-brand" href="text">
+            <h1 class="tm-site-title mb-0">搜索结果:"$text"</h1>
+          </a>
+          <button
+            class="navbar-toggler ml-auto mr-0"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars tm-nav-icon"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto h-100">
+              <li class="nav-item">
+                  <a class="nav-link" href="gegu_common$end ">
+                      <i class="fas fa-tachometer-alt"></i>
+                          基本数据版
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link  active" href="#">
+                      <i class="far fa-file-alt"></i>
+                          咨询栏
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="recommand$end">
+                      <i class="fas fa-shopping-cart"></i>
+                          每日推荐
+                  </a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="account$end ">
+                      <i class="far fa-user"></i>
+                          账户
+                      <span class="sr-only">(current)</span>
+                  </a>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                $if user == None:
+                    <a class="nav-link d-block" href="account?index=$index ">
+                        <p>请先注册账号</p>
+                    </a>
+                $else:
+                    <a class="nav-link d-block" href="#">
+                        $user <b>欢迎</b>
+                    </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container mt-5">
+        <div class="row tm-content-row">
+          <div class="col-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+              <form action="gegu_main" class="tm-signup-form row">
+                <div class="form-group col-lg-9" style="margin-bottom: 0px;">
+                  <input
+                    name="keyword"
+                    type="text"
+                    class="form-control validate"
+                    required = ""
+                  />
+                </div>
+                <div class="form-group col-lg-3" style="margin-bottom: 0px;">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block text-uppercase"
+                    style="height:50px;"
+                  >
+                    搜点别的？
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- row -->
+        <div class="row tm-content-row">
+
+
+          <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 ">
+
+
+            <div  class="tm-bg-primary-dark tm-block tm-block-h-auto tm-block-col" >
+                $if len(ans1)>0:
+                    <div class = "row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-bottom:20px;">
+                            <a style="height:20px" href="$ans1[0]['url']">
+                                <b>$ans1[0]['title']</b>
+                            </a>
+                        </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <div class="box">
+                                    <img class="pic" src="$ans1[0]['start']0.jpg ">
+                                </div>
+                                $ l = 150
+                                $if int(ans1[0]['sum']) > 1:
+                                    <div class="box">
+                                        <img class="pic" src="$ans1[0]['start']1.jpg ">
+                                    </div>
+                                    $ l = 300
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                $if len(ans1[0]['content'])>l:
+                                    <p style="color:#ffffff;">$ans1[0]['content'][:l] ...</p>
+                                $else:
+                                    <p style="color:#ffffff;">$ans1[0]['content']</p>
+                            </div>
+                    </div>
+            </div>
+            $for i in range(1,20):
+                $if (i%2 == 0) and (i // 2) < len(ans2):
+                    $code:
+                        j = i // 2 - 1
+                    <div  class="tm-bg-primary-dark tm-block tm-block-h-auto tm-block-col" >
+                      <div class = "row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-bottom:20px;">
+                            <a style="height:20px" href="$ans2[j]['url'] ">
+                                <b>$ans2[j]['title']</b>
+                            </a>
+                        </div>
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                $if len(ans2[j]['content'])>300:
+                                    <p style="color:#ffffff;">$ans2[j]['content'][:300] ...</p>
+                                $else:
+                                    <p style="color:#ffffff;">$ans2[j]['content']</p>
+                            </div>
+                      </div>
+                    </div>
+
+                $elif i%2==1:
+                  $if i // 2 + 1 < len(ans1):
+                    $ j = i // 2 + 1
+                    <div  class="tm-bg-primary-dark tm-block tm-block-h-auto tm-block-col" >
+                        <div class = "row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-bottom:20px;">
+                                <a style="height:20px" href="$ans1[j]['url']">
+                                    <b>$ans1[j]['title']</b>
+                                </a>
+                            </div>
+
+                                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="box">
+                                        <img class="pic" src="$ans1[j]['start']0.jpg ">
+                                    </div>
+                                    $ l = 150
+                                    $if int(ans1[j]['sum']) > 1:
+                                        <div class="box">
+                                            <img class="pic" src="$ans1[j]['start']1.jpg ">
+                                        </div>
+                                        $ l = 300
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    $if len(ans1[j]['content'])>l:
+                                        <p style="color:#ffffff;">$ans1[j]['content'][:l ] ...</p>
+                                    $else:
+                                        <p style="color:#ffffff;">$ans1[j]['content']</p>
+                                </div>
+                        </div>
+                    </div>
+          </div>
+
+
+
+
+          <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 tm-block-col" >
+            <div  class="tm-bg-primary-dark tm-block tm-block-h-auto" >
+                $if k > 0:
+                    <h2 class="tm-block-title">大数据智能评级:</h2>
+                    <h2 class="tm-block-title">$text ->$star</h2>
+                    <br>
+                $if user!=None:
+                    $code:
+                        temp = get_recom(user)
+                    $if len(temp) > 0:
+                        <h2 class="tm-block-title" style = "margin-bottom:10px;">$user 的个性化推荐股:</h2>
+                    $for i in range(len(temp)):
+                        <a class="nav-link" style="height:25px;" href="gegu_main?keyword=$temp[i] ">
+                            $temp[i]
+                        </a>
+                    <h2 class="tm-block-title" style = "margin-bottom:10px; margin-top:20px;" >$user 的历史记录:</h2>
+                    $code:
+                        his_arr = get_his(user)
+                    $for i in range(len(his_arr)):
+                        <a class="nav-link" style="height:30px;" href="gegu_main?keyword=$his_arr[i] ">
+                            $his_arr[i]
+                        </a>
+                $else:
+                    <h2 class="tm-block-title">注册账号解锁历史记录</h2>
+            </div>
+          </div>
+        </div>
+
+
+
+        </div>
+      </div>
+      <footer class="tm-footer row tm-mt-small">
+        <div class="col-12 font-weight-light">
+          <p class="text-center text-white mb-0 px-4 small">
+            Copyright &copy; <b>股神之路 2020</b> All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="../static/gegu/js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="../static/gegu/js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+  </body>
+</html>

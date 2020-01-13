@@ -1,0 +1,241 @@
+  .db-bg, .db-burger {
+    position: fixed;
+    z-index: 222;
+    width: 50px;
+    height: 50px;
+    line-height: 30px;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 100%;
+    left: 25px;
+    top: 25px;
+  }
+
+  .db-bg {
+    background: #101010;
+    pointer-events: none;
+    transition: .3s;
+    left: 50px;
+    top: 50px;
+    transform: translate3d(50%, -50%, 0);
+    transform-origin: center center;
+  }
+  /*---------------------------------------
+      MENU
+  -----------------------------------------*/
+
+  .menu, .menu-bg, .menu-burger {
+    position: fixed;
+    z-index: 222;
+    width: 50px;
+    height: 50px;
+    line-height: 30px;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 100%;
+    right: 25px;
+    top: 25px;
+  }
+
+  .menu-bg {
+    background: #101010;
+    pointer-events: none;
+    transition: .3s;
+    right: 50px;
+    top: 50px;
+    transform: translate3d(50%, -50%, 0);
+    transform-origin: center center;
+  }
+
+  .menu-bg.fs {
+    transform: translate3d(50%, -50%, 0);
+    width: 500vw;
+    height: 500vw;
+  }
+
+  .menu-burger {
+    color: #ffffff;
+    padding-top: 11px;
+    -webkit-user-select: none;
+    cursor: pointer;
+    transition: .4s;
+    transform-origin: center;
+    z-index: 9999;
+  }
+
+  .menu-burger.fs {
+    transform: rotate(-180deg) translateY(5px);
+  }
+
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: .4s;
+    margin-top: 50px;
+    transform: translateY(-200%);
+    pointer-events: none;
+  }
+
+  .menu-items ul.menu {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    top: 10px;
+  }
+
+  .menu-items ul.menu li {
+    display: block;
+    list-style: none;
+    transition: 1s;
+    opacity: 0;
+    margin: 5px 0;
+  }
+
+  .menu-items ul.menu li a {
+    color: #ffffff;
+    font-size: 18px;
+    position: relative;
+  }
+
+  .menu-items ul.menu li a:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: 13px;
+    transition: 0.5s;
+    margin: 0 auto;
+    display: block;
+    right: 0;
+    left: 0;
+  }
+
+  .menu-items ul.menu li a:hover:after {
+    content: "";
+    background: #d2b48c;
+    width: 100%;
+  }
+
+  .menu-items.fs {
+    transform: translateY(0);
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .menu-items.fs ul li {
+    opacity: 1;
+  }
+
+  address p {
+    color: #f9f9f9;
+  }
+
+/*------------------------------
+  MAIN
+------------------------------*/
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #303030;
+  }
+
+  body, html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-weight: 300;
+    line-height: inherit;
+    color: #ffffff;
+    font-size: 3em;
+  }
+
+
+  .overlay {
+    background: linear-gradient(to top right, #d2b48c, #000000);
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .subscribe-form {
+    position: relative;
+    margin: 40px auto 30px;
+  }
+
+  .subscribe-form .form-control {
+    background: #ffffff;
+    box-shadow: none;
+    border: 0;
+    border-radius: 50px;
+	width: 500px;
+    height: 60px;
+    padding: 6px 30px;
+    font-size:18px;
+  }
+
+  .subscribe-form button[type="submit"] {
+    background: transparent;
+    border: 0;
+    outline: none;
+  }
+
+  .subscribe-form .fa {
+    right:15px;
+    cursor:pointer;
+    position: absolute;
+    top: 15px;
+    color: #d2b48c;
+    font-size: 30px;
+  }
+
+  .fa {
+    cursor: pointer;
+    align-items:center;
+    color: #FFFFFF;
+    font-size: 40px;
+  }
+
+  button{
+    border: 0;
+    background: transparent;
+  }
+
+  #home {
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  #home .container {
+    width: 100%;
+  }
+
+  .home-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+  }
+

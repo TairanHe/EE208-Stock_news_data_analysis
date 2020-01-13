@@ -1,0 +1,88 @@
+$code:
+    x =['别人恐惧的时候，我贪婪<br>别人贪婪的时候，我恐惧',
+        '评估一家企业的价值<br>部分是艺术部分是科学',
+        '价格是你付出的<br>价值才是你得到的',
+        '投资诀窍就是坐在那里看着一个个扔来的球<br>并且等待打到你的最佳位置的那个',
+        '当机会来临时<br>就要行动',
+        '我一直知道自己会变得富有<br>我一分钟都没有怀疑过',
+        '你不用什么都懂<br>但你必须在某一方面懂得比别人多',
+        '如开始就成功<br>就不要另觅他途',
+        '他们不是被市场打败的<br>是被自己打败的',
+        '要想游得快<br>借助潮汐的力量要比用手划水效果更好',
+        '太乐观的人没有脑子<br>太悲观的人则是没有理智']
+    y = floor(random()*11)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>图片查询</title>
+     <meta charset="UTF-8">
+     <link rel="stylesheet" href="static/template1/css/bootstrap.min.css">
+     <link rel="stylesheet" href="static/template1/css/vegas.min.css">
+     <link rel="stylesheet" href="static/template1/css/font-awesome.min.css">
+     <link rel="stylesheet" href="static/template1/css/template_pic.css">
+
+</head>
+<body>
+     <div class="menu-bg"></div>
+     <div class="menu-burger">☰</div>
+
+     <div class="menu-items">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-offset-2 col-md-4 col-sm-6">
+             <h1>数据来源</h1>
+              <ul class="menu">
+                <li><a href="#">百家号</a></li>
+                <li><a href="#">新浪财经</a></li>
+                <li><a href="#">东方财富</a></li>
+              </ul>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <address>
+                <h1>Our Studio</h1>
+                <p>No. 800 Dongchuan Road, Minhang <br> Shanghai, China</p>
+                <div class="google-map">
+                   <iframe src="http://www.google.cn/maps/embed?pb=!1m18!1m12!1m3!1d3418.78852828409!2d121.44489631513859!3d31.032140981533708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35b287dfc0044083%3A0x857c43c6ad6d04f9!2z5LiK5rW35Lqk6YCa5aSn5a2m6Ze16KGM5qCh5Yy6!5e0!3m2!1szh-CN!2scn!4v1558765263635!5m2!1szh-CN!2scn" width="300" height="225" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+              </address>
+            </div>
+          </div>
+        </div>
+     </div>
+
+    <section id="home">
+        <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="home-info">
+                            <h1>$:x[y]</h1>
+                        <div class="subscribe-form">
+                            <form action="pic_res" method="post" enctype="multipart/form-data">
+                                <div class="form-control">
+                                    <p style="color: #D2B48C; font-size:24px; margin: 5px 0 10px 0px;">点击上传图片</p>
+                                    <input  type='file' style="opacity:0; z-indx:0;" name="myfile">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div style="height:20px;"></div>
+                        <button onclick="window.location.href='/text'"><i class = "fa fa-refresh"></i></button>
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div style="height:100%; height:100%;"></div>
+    </section>
+
+    <script src="static/template1/js/jquery.js"></script>
+    <script src="static/template1/js/bootstrap.min.js"></script>
+    <script src="static/template1/js/vegas.min.js"></script>
+    <script src="static/template1/js/custom_pic.js"></script>
+
+
+</body>
+</html>

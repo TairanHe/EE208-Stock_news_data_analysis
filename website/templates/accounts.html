@@ -1,0 +1,169 @@
+$def with(index,user)
+$code:
+    end = "?index={}".format(index)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>账户页面</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+    />
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="../static/gegu/css/fontawesome.min.css" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="../static/gegu/css/bootstrap.min.css" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="../static/gegu/css/templatemo-style.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+  </head>
+
+  <body id="reportsPage">
+    <div class="" id="home">
+      <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+          <a class="navbar-brand" href="text">
+            <h1 class="tm-site-title mb-0">账户注册</h1>
+          </a>
+          <button
+            class="navbar-toggler ml-auto mr-0"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars tm-nav-icon"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto h-100">
+              <li class="nav-item">
+                  <a class="nav-link" href="gegu_common$end">
+                      <i class="fas fa-tachometer-alt"></i>
+                          基本数据版
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="text_common$end">
+                      <i class="far fa-file-alt"></i>
+                          咨询栏
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="recommand$end">
+                      <i class="fas fa-shopping-cart"></i>
+                          每日推荐
+                  </a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link active" href="#">
+                      <i class="far fa-user"></i>
+                          账户
+                      <span class="sr-only">(current)</span>
+                  </a>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                $if user == None:
+                    <a class="nav-link d-block" href="account?index=$index ">
+                        <p>请先注册账号</p>
+                    </a>
+                $else:
+                    <a class="nav-link d-block" href="#">
+                        $user <b>欢迎</b>
+                    </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container mt-5">
+
+        <!-- row -->
+        <div class="row tm-content-row">
+          <div class="tm-block-col tm-col-avatar">
+            <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+              <h2 class="tm-block-title">该注册的时候要尽量注册</h2>
+              <div class="tm-avatar-container">
+                <img
+                  src="../static/gegu/img/bft.jfif"
+                  alt="Avatar"
+                  class="tm-avatar img-fluid mb-4"
+                />
+                <a href="#" class="tm-avatar-delete-link">
+                  <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="tm-block-col tm-col-account-settings">
+            <div class="tm-bg-primary-dark tm-block tm-block-settings">
+              <h2 class="tm-block-title">账户设置</h2>
+              <form action="register" class="tm-signup-form row">
+                <div class="form-group col-lg-6">
+                  <label for="name">用户名</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    class="form-control validate"
+                    required=""
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="email">用户邮箱</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="phone">用户电话</label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label class="tm-hide-sm">&nbsp;</label>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block text-uppercase"
+                  >
+                    上传信息
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="tm-footer row tm-mt-small">
+        <div class="col-12 font-weight-light">
+          <p class="text-center text-white mb-0 px-4 small">
+            Copyright &copy; <b>股神之路 2020</b> All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="../static/gegu/js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="../static/gegu/js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+  </body>
+</html>
