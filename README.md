@@ -22,8 +22,12 @@ Let's get started!
 用于给股票未来走势评级
 ## 读写文件需要重复使用的工具函数放在这里 `read_write.py`
 
+#图片索引 
+Forked from [https://github.com/mendesk/image-ndd-lsh]
 
 # 文本聚类
+Forked from [from https://github.com/zhangfazhan/text_clustering]
+
 具体详见`text_clustering`文件夹
 
 # 评论分析
