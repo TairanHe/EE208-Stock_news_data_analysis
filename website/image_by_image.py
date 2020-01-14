@@ -47,7 +47,7 @@ def get_pre_data(input_dir: str, hash_size: int, bands: int): #  -> List[Tuple[s
         # file_list.append(test_path)
         path = input_dir
         folders = listdir(path)
-        for folder in folders[1550:1650]:
+        for folder in folders:
             folders2 = listdir(path+'/'+folder)
             for folder2 in folders2:
                 files = listdir(path+'/'+folder+'/'+folder2)
