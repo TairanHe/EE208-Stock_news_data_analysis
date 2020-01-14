@@ -1,6 +1,14 @@
 # EE208-Stock_news_data_analysis
 Final homework for EE208 aiming for analyze stock datas and news.
 
+# 请从下面的链接下载分卷的图片信息
+https://jbox.sjtu.edu.cn/l/muHvm2
+https://jbox.sjtu.edu.cn/l/j5EbRY
+https://jbox.sjtu.edu.cn/l/pn3mHv
+https://jbox.sjtu.edu.cn/l/H1NwmR
+https://jbox.sjtu.edu.cn/l/Y0TMh4
+https://jbox.sjtu.edu.cn/l/snpjHj
+
 Let's get started!
 # `BaiduImageSpider-master`
 爬取百度百家号所需要的一些程序
