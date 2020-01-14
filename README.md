@@ -1,7 +1,7 @@
 # EE208-Stock_news_data_analysis
 Final homework for EE208 aiming for analyze stock datas and news.
 
-# 请从下面的链接下载分卷的图片信息
+# 请从下面的链接下载分卷的图片信息（一共6个文件）
 https://jbox.sjtu.edu.cn/l/muHvm2
 https://jbox.sjtu.edu.cn/l/j5EbRY
 https://jbox.sjtu.edu.cn/l/pn3mHv
